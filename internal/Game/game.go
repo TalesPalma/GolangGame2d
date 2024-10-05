@@ -13,7 +13,7 @@ type Game struct {
 }
 
 func (g *Game) Update() error {
-	err := g.personagem.Moviment()
+	err := g.personagem.Behavior()
 	if err != nil {
 		return err
 	}

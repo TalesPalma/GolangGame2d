@@ -3,6 +3,7 @@ package animation
 import (
 	"image"
 
+	"github.com/TalesPalma/Game2dGolang/internal/utils"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -14,7 +15,11 @@ type Animation struct {
 	frameIndex  int
 }
 
-func NewAnimation(image *ebiten.Image, frameWidth, frameHeight int, numFrames int) *Animation {
+func NewAnimation(imagePath string, frameWidth, frameHeight int, numFrames int) *Animation {
+	image, err := utils.LoadImage(imagePath)
+	if err != nil {
+		panic(err)
+	}
 	return &Animation{
 		image:       image,
 		frameWidth:  frameWidth,
