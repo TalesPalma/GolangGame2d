@@ -41,3 +41,12 @@ func (a *Animation) GetCurrentFrame() *ebiten.Image {
 	frameReact := image.Rect(frameX, 0, frameX+a.frameWidth, a.frameHeight)
 	return a.Image.SubImage(frameReact).(*ebiten.Image)
 }
+
+// func (a *Animation) FlipImage() {
+// 	flippedImage := ebiten.NewImage(a.frameWidth, a.frameHeight)
+//
+// 	op := &ebiten.DrawImageOptions{}
+// 	op.GeoM.Scale(1, -1)
+//
+// 	a.Image = flippedImage
+// }

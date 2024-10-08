@@ -7,11 +7,17 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
+type Direction int
+
+const (
+	Right Direction = iota
+	Left
+)
+
 type Personagem struct {
 	X         float64
 	Y         float64
 	Animation *animation.Animation
-	direction string
 }
 
 func (p *Personagem) Behavior() error {
@@ -38,6 +44,7 @@ func (p *Personagem) Draw(screen *ebiten.Image) {
 
 	// Obtenha a imagem atual
 	currentFrame := p.Animation.GetCurrentFrame()
+
 	op.GeoM.Translate(p.X, p.Y)
 
 	// Desenhe a imagem no screen
@@ -47,27 +54,23 @@ func (p *Personagem) Draw(screen *ebiten.Image) {
 func (p *Personagem) setAnimation() {
 
 	if inpututil.IsKeyJustReleased(ebiten.KeyRight) || inpututil.IsKeyJustReleased(ebiten.KeyLeft) {
-		if p.direction != "" {
-			p.Animation = animation.NewAnimation(config.IdleImagePath, 120, 80, 10)
-		}
+		p.Animation = animation.NewAnimation(config.IdleImagePath, 120, 80, 10)
 	}
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyRight) {
-		p.movimentPersonage("right")
-		p.direction = "right"
+		p.movimentPersonage(Right)
 	}
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyLeft) {
-		p.movimentPersonage("left")
-		p.direction = "left"
+		p.movimentPersonage(Left)
 	}
 
 }
 
-func (p *Personagem) movimentPersonage(direction string) {
-	if direction == "right" {
+func (p *Personagem) movimentPersonage(direction Direction) {
+	if direction == Right {
 		p.Animation = animation.NewAnimation(config.RunImageRightPath, 120, 80, 10)
-	} else if direction == "left" {
+	} else if direction == Left {
 		p.Animation = animation.NewAnimation(config.RunImageLeftPath, 120, 80, 10)
 	}
 }
