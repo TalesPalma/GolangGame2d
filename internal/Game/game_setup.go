@@ -10,8 +10,8 @@ import (
 func InitGame() *Game {
 	animation := animation.NewAnimation(config.IdleImagePath, config.FrameWidth, config.FrameHeight, config.NumFrames)
 	personagem := &personagem.Personagem{
-		X:         0,
-		Y:         0,
+		X:         100,
+		Y:         100,
 		Animation: animation,
 	}
 	return &Game{

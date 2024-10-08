@@ -8,7 +8,7 @@ import (
 )
 
 type Animation struct {
-	image       *ebiten.Image
+	Image       *ebiten.Image
 	frameWidth  int
 	frameHeight int
 	numFrames   int
@@ -20,8 +20,9 @@ func NewAnimation(imagePath string, frameWidth, frameHeight int, numFrames int) 
 	if err != nil {
 		panic(err)
 	}
+
 	return &Animation{
-		image:       image,
+		Image:       image,
 		frameWidth:  frameWidth,
 		frameHeight: frameHeight,
 		numFrames:   numFrames,
@@ -38,5 +39,5 @@ func (a *Animation) Update() {
 func (a *Animation) GetCurrentFrame() *ebiten.Image {
 	frameX := a.frameIndex * a.frameWidth
 	frameReact := image.Rect(frameX, 0, frameX+a.frameWidth, a.frameHeight)
-	return a.image.SubImage(frameReact).(*ebiten.Image)
+	return a.Image.SubImage(frameReact).(*ebiten.Image)
 }
