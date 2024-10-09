@@ -1,15 +1,14 @@
 package game
 
 import (
-	"image/color"
-
 	personagem "github.com/TalesPalma/Game2dGolang/internal/Personagem"
+	"github.com/TalesPalma/Game2dGolang/internal/scenario"
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Game struct {
 	personagem *personagem.Personagem
+	scenario   *scenario.Scenario
 }
 
 func (g *Game) Update() error {
@@ -21,12 +20,10 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	screen.Fill(color.Black)
+	screen.DrawImage(g.scenario.Background, nil)
 	if g.personagem != nil {
 		g.personagem.Draw(screen)
 	}
-
-	ebitenutil.DebugPrint(screen, "Hello world")
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {

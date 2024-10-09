@@ -1,9 +1,10 @@
 package utils
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-	"image"
+	"image/png"
 	"os"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func LoadImage(path string) (*ebiten.Image, error) {
@@ -14,7 +15,7 @@ func LoadImage(path string) (*ebiten.Image, error) {
 	}
 
 	defer file.Close()
-	img, _, err := image.Decode(file)
+	img, err := png.Decode(file)
 	if err != nil {
 		return nil, err
 	}

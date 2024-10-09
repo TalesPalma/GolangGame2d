@@ -2,6 +2,7 @@ package animation
 
 import (
 	"image"
+	"log"
 
 	"github.com/TalesPalma/Game2dGolang/internal/utils"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -18,7 +19,7 @@ type Animation struct {
 func NewAnimation(imagePath string, frameWidth, frameHeight int, numFrames int) *Animation {
 	image, err := utils.LoadImage(imagePath)
 	if err != nil {
-		panic(err)
+		log.Fatal("Erro algo carregar a imagem de animação: ", err)
 	}
 
 	return &Animation{
@@ -41,12 +42,3 @@ func (a *Animation) GetCurrentFrame() *ebiten.Image {
 	frameReact := image.Rect(frameX, 0, frameX+a.frameWidth, a.frameHeight)
 	return a.Image.SubImage(frameReact).(*ebiten.Image)
 }
-
-// func (a *Animation) FlipImage() {
-// 	flippedImage := ebiten.NewImage(a.frameWidth, a.frameHeight)
-//
-// 	op := &ebiten.DrawImageOptions{}
-// 	op.GeoM.Scale(1, -1)
-//
-// 	a.Image = flippedImage
-// }
