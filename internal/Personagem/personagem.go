@@ -19,6 +19,7 @@ type Personagem struct {
 	Y         float64
 	Animation *animation.Animation
 	Attacked  bool
+	speed     float64
 }
 
 func NewPersonagem(animation *animation.Animation) *Personagem {
@@ -27,6 +28,7 @@ func NewPersonagem(animation *animation.Animation) *Personagem {
 		Y:         100,
 		Animation: animation,
 		Attacked:  false,
+		speed:     5,
 	}
 }
 
@@ -40,9 +42,9 @@ func (p *Personagem) Behavior() error {
 	}
 	switch keys[0] {
 	case ebiten.KeyRight:
-		p.X += 10
+		p.X += p.speed
 	case ebiten.KeyLeft:
-		p.X -= 10
+		p.X -= p.speed
 	}
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyQ) {
