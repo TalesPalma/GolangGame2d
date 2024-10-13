@@ -14,8 +14,8 @@ func InitGame() *Game {
 	personagem := personagem.NewPersonagem(animation)
 	scenario := scenario.InitScenario()
 	enemys := []enemy.Enemy{
-		*enemy.NewEnemy(100, 100),
-		*enemy.NewEnemy(200, 200),
+		*enemy.NewEnemy(100),
+		*enemy.NewEnemy(100),
 	}
 	return &Game{
 		personagem: personagem,

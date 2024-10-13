@@ -11,9 +11,9 @@ type Enemy struct {
 	animation *animation.Animation
 }
 
-func NewEnemy(x float64, y float64) *Enemy {
+func NewEnemy(x float64) *Enemy {
 
 	animation := animation.NewAnimation(config.IdleEnemyPath, config.FrameWidth, config.FrameHeight, config.NumFrames)
 
-	return &Enemy{X: x, Y: y, animation: animation}
+	return &Enemy{X: x, Y: 135, animation: animation}
 }

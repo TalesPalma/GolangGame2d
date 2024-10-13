@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	ebiten.SetWindowSize(640, 480)
+	ebiten.SetWindowSize(800, 600)
 	ebiten.SetWindowTitle("Tales Of Palma")
 	if err := ebiten.RunGame(game.InitGame()); err != nil {
 		log.Fatal(err)
